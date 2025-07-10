@@ -1,0 +1,31 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Django-specific files
+*.log
+*.pot
+local_settings.py  # Or any file containing sensitive local configurations
+db.sqlite3         # If using SQLite for development
+media/             # Directory for user-uploaded media files
+static/            # Directory for collected static files (if not explicitly managed)
+
+# Virtual Environment
+.env/
+venv/
+env/
+
+# IDE-specific files (examples)
+.idea/             # PyCharm
+.vscode/           # VS Code
+*.sublime-project
+*.sublime-workspace
+
+# Other common files
+.DS_Store          # macOS specific
+Thumbs.db          # Windows specific
+.coverage          # Coverage reports
+.tox/              # Tox test environments
+.eggs/             # Python eggs
