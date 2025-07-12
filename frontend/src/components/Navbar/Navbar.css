@@ -1,84 +1,75 @@
 /* Navbar.css */
+.Navbar-Container {
+  width: 100%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Consistent font */
+}
+
 .Navbar {
-  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-  color: white;
+  background: linear-gradient(to right, #0f0c29, #302b63, #24243e); /* More modern gradient */
+  color: #ffffff;
   padding: 1rem 2rem;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  align-items: center; /* Center items vertically */
 }
 
 .Nav-Header h1 {
   margin: 0;
-  font-size: 1.8rem;
-  background: linear-gradient(to right, #ffffff, #fbb034);
+  font-size: 2rem;
+  background: linear-gradient(to right, #fbb034, #ff5a00); /* or whichever you prefer */
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  font-weight: 700;
+  font-weight: 800;
+  transition: transform 0.3s ease;
 }
 
-.Nav-Links ul {
+.Nav-Header h1:hover {
+  transform: scale(1.05);
+}
+
+
+.Nav-Links ul { /* No change needed, list items are handled by the link styles */
   list-style: none;
   display: flex;
   gap: 1.5rem;
   margin: 0;
   padding: 0;
-}
+} /* End of .Nav-Links ul */
 
 .Nav-Links a {
-  color: white;
+  color: rgba(255, 255, 255, 0.9); /* Slightly less opaque for better contrast */
   text-decoration: none;
-  font-weight: 500;
-  font-size: 1.1rem;
+  font-weight: 600; /* Bolder font weight */
+  font-size: 1.1rem; /* Keep the same font size */
   padding: 0.5rem 1rem;
   border-radius: 4px;
-  transition: all 0.3s ease;
-  position: relative;
+  transition: all 0.3s ease; /* Smooth transitions for hover and active states */
+  position: relative; /* Needed for the active link indicator */
 }
 
-.Nav-Links a:hover {
+.Nav-Links a:hover { /* Keep hover effect for background */
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-.Nav-Links a::after {
+.Nav-Links a::after { /* Active link indicator */
   content: '';
   position: absolute;
-  bottom: -2px;
+  bottom: -5px; /* Position below the link */
   left: 50%;
   transform: translateX(-50%);
   width: 0;
-  height: 2px;
-  background: #fbb034;
+  height: 3px; /* Thicker indicator */
+  background: #fbb034; /* Highlight color */
+  border-radius: 1.5px; /* Rounded edges */
   transition: width 0.3s ease;
+  opacity: 0; /* Start with indicator invisible */
 }
 
-.Nav-Links a:hover::after {
-  width: 70%;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .Navbar {
-    flex-direction: column;
-    padding: 1rem;
-  }
-  
-  .Nav-Header {
-    margin-bottom: 1rem;
-  }
-  
-  .Nav-Links ul {
-    flex-direction: column;
-    gap: 0.5rem;
-    align-items: center;
-  }
-  
-  .Nav-Links a {
-    padding: 0.5rem;
-  }
+.Nav-Links a:hover::after { /* Show indicator on hover */
+  width: 70%; /* Expand width on hover */
+  opacity: 1; /* Make indicator visible */
 }
 
 .Nav-Links a.active {
@@ -88,4 +79,54 @@
 
 .Nav-Links a.active::after {
   width: 70%;
+}
+
+.Nav-Links a.active { /* Style for the active link */
+  background-color: rgba(255, 255, 255, 0.2); /* Subtle background for active */
+  font-weight: 700; /* Make active link bolder */
+}
+
+.Nav-Links a.active::after { /* Active link indicator is always visible for the active link */
+  width: 80%; /* Slightly wider indicator for active link */
+  opacity: 1; /* Always visible */
+}
+
+.Sub-Navbar {
+ background-color: #e9ecef; /* Light gray background */
+  color: #495057; /* Darker text color */
+  padding: 0.5rem 2rem;
+  display: flex;
+  justify-content: center; /* Center sub-navbar links */
+  gap: 2rem; /* Space between sub-navbar links */
+  border-top: 1px solid #dee2e6; /* Add a subtle top border */
+}
+
+.Sub-Navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 2rem; /* Space between list items */
+}
+
+.Sub-Navbar li a {
+  color: #495057;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.Sub-Navbar a:hover {
+  color: #007bff; /* Highlight on hover */
+}
+
+.Nav-Links li.active a {
+  background-color: rgba(255, 255, 255, 0.2);
+  font-weight: 700;
+  border-radius: 6px;
+}
+
+.Navbar,
+.Sub-Navbar {
+  font-family: 'Poppins', sans-serif;
 }
