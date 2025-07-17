@@ -130,3 +130,18 @@
 .Sub-Navbar {
   font-family: 'Poppins', sans-serif;
 }
+
+.Sub-Navbar li.active a {
+  background-color: #007bff;
+  color: white;
+  border-radius: 20px;
+  padding: 0.3rem 0.75rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+.Sub-Navbar a:hover {
+  background-color: #0056b3;
+  color: white;
+  border-radius: 20px;
+  padding: 0.3rem 0.75rem;
+}
