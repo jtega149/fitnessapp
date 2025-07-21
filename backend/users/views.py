@@ -13,8 +13,9 @@ class SignupViewset(viewsets.ViewSet):
 
     def create(self, request):
         serializer = self.serializer_class(data=request.data) # Validate incoming data
+        print("Request data:", request.data)  # Debugging line to check incoming data
         if serializer.is_valid():
-            serializer.save()
+            serializer.save() #Triggers the create method in SignupSerializer
             return Response(serializer.data)
         else:
             return Response(serializer.errors, status=400)

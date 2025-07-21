@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import *
 from django.contrib.auth import get_user_model 
-User = get_user_model() #Makes sure we get the latest user model
+User = get_user_model() #Returns Django's user model, which was extended in models.py
 
 class SignupSerializer(serializers.ModelSerializer):
     class Meta:
@@ -11,4 +11,5 @@ class SignupSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data) #Creates a user with the validated data
+        print("User created:", user)  # Debugging line to check created user
         return user
