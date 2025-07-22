@@ -41,10 +41,3 @@ npm start
 
 
 ---
-
-Let me know if:
-- You’re using React, Vite, or just plain HTML for the frontend
-- You want to include screenshots or a "Features" section
-- You want me to auto-generate a `requirements.txt` from your actual Django environment
-
-Happy to help polish it even more!
