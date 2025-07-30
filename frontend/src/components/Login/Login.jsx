@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Login.css';
+import AxiosInstance from '../AxiosInstance';
 
 const Login = () => {
+
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -16,8 +21,17 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Login data:', formData);
-    // TODO: connect to backend or redirect on success
+    AxiosInstance.post('/login/', formData)
+      .then((response) => {
+        console.log('Login successful:', response.data);
+        navigate('/'); // Redirect to home page after login
+        // Handle successful login (e.g., redirect or show a success message)
+      })
+      .catch((error) => {
+        console.error('Error during login:', error);
+        // Handle error (e.g., show an error message)
+      });
+    setFormData({ email: '', password: '' }); // Reset form after submission
   };
 
   return (
