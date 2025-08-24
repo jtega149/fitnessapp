@@ -13,9 +13,9 @@ const Navbar = () => {
     const getSubSections = () => {
         switch (activeSection) {
             case 'home':
-                return ['HOME', 'GOALS', 'CHECKIN', 'FRIENDS'];
+                return ['HOME', 'GOALS', 'CHECKIN'];
             case 'food':
-                return ['FOOD DIARY', 'DATABASE', 'MY FOODS', 'MY MEALS'];
+                return ['FOOD DIARY', 'DATABASE', 'MY FOODS AND MEALS'];
             case 'exercise':
                 return ['EXERCISE DIARY', 'DATABASE', 'MY WORKOUTS'];
             default:

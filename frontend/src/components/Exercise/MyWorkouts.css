@@ -1,0 +1,67 @@
+/* MyWorkouts.css */
+.MyWorkouts {
+  max-width: 750px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  font-family: Arial, sans-serif;
+}
+
+.MyWorkouts h1 {
+  text-align: center;
+  font-size: 1.9rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.MyWorkouts button {
+  padding: 0.6rem 1.2rem;
+  margin: 0.4rem 0.3rem;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.MyWorkouts button:hover {
+  background-color: #0056b3;
+}
+
+.MyWorkouts h3 {
+  margin-top: 2rem;
+  font-size: 1.3rem;
+  color: #444;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 0.4rem;
+}
+
+.MyWorkouts input[type="text"] {
+  padding: 0.6rem;
+  width: 65%;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  margin-right: 0.5rem;
+  transition: border-color 0.3s;
+}
+
+.MyWorkouts input[type="text"]:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.MyWorkouts-results {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+  color: #777;
+  font-style: italic;
+}
