@@ -27,3 +27,14 @@ class CustomUser(AbstractUser):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE) # one-to-one relationship with CustomUser
+    caloric_goal = models.IntegerField(default=2000)
+    protein_goal = models.IntegerField(default=100)
+    carbs_goal = models.IntegerField(default=250)
+    fat_goal = models.IntegerField(default=70)
+    progress_notes = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.user.email}'s Profile"

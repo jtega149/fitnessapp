@@ -1,28 +1,37 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import './Goals.css';
+import AxiosInstance from '../AxiosInstance';
 
 // Outside of Goals
-const MacroPanel = ({ macros, handleMacroChange, edittingMacros, setEdittingMacros }) => {
+const MacroPanel = ({ macros, handleMacroChange, edittingMacros, setEdittingMacros, UpdateGoals }) => {
     if (!edittingMacros) {
         return (
             <div className="macros">
                 <h1>MACROS</h1>
-                <p>Calories: {macros.calories}</p>
-                <p>Protein: {macros.protein}g</p>
-                <p>Carbs: {macros.carbs}g</p>
-                <p>Fats: {macros.fats}g</p>
-                <button onClick={() => setEdittingMacros(true)}>Edit Macros</button>
+                <p>Calories: {macros.caloric_goal}</p>
+                <p>Protein: {macros.protein_goal}g</p>
+                <p>Carbs: {macros.carbs_goal}g</p>
+                <p>Fats: {macros.fat_goal}g</p>
+                <button onClick={() => setEdittingMacros(true)}>Edit Macro Goals</button>
             </div>
         );
     } else {
         return (
             <div className="macros">
                 <h1>MACROS</h1>
-                <p>Calories: <input type="number" name="calories" value={macros.calories} onChange={handleMacroChange}/></p>
-                <p>Protein: <input type="number" name="protein" value={macros.protein} onChange={handleMacroChange}/>g</p>
-                <p>Carbs: <input type="number" name="carbs" value={macros.carbs} onChange={handleMacroChange}/>g</p>
-                <p>Fats: <input type="number" name="fats" value={macros.fats} onChange={handleMacroChange}/>g</p>
-                <button onClick={() => setEdittingMacros(false)}>Save</button>
+                <p>
+                  Calories: <input type="number" name="caloric_goal" value={macros.caloric_goal} onChange={handleMacroChange}/>
+                </p>
+                <p>
+                  Protein: <input type="number" name="protein_goal" value={macros.protein_goal} onChange={handleMacroChange}/>g
+                </p>
+                <p>
+                  Carbs: <input type="number" name="carbs_goal" value={macros.carbs_goal} onChange={handleMacroChange}/>g
+                </p>
+                <p>
+                  Fats: <input type="number" name="fat_goal" value={macros.fat_goal} onChange={handleMacroChange}/>g
+                </p>
+                <button onClick={() => { UpdateGoals(macros); setEdittingMacros(false); }}>Save</button>
             </div>
         );
     }
@@ -30,12 +39,40 @@ const MacroPanel = ({ macros, handleMacroChange, edittingMacros, setEdittingMacr
 
 
 const Goals = () => {
-    const [macros, setMacros] = useState({
-        calories: 3200,
-        protein: 200,
-        carbs: 400,
-        fats: 70,
-    });
+
+    const [macros, setMacros] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    const GetData = () => {
+        AxiosInstance.get('userprofile/')
+        .then((res) => {
+            if (res.data.length > 0) {
+            setMacros(res.data[0]); // grab first (and only) profile
+            }
+            console.log(res.data[0]);
+            setLoading(false);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    };
+
+    const UpdateGoals = (newGoals) => {
+        AxiosInstance.patch(`userprofile/${macros.id}/`, newGoals)
+            .then((res) => {
+                console.log("Goals updated:", res.data);
+                setMacros(res.data);
+            })
+            .catch((err) => {
+                console.error("Error updating goals:", err);
+            });
+    };
+
+
+    useEffect(() => {
+        GetData();
+    }, []);
+
     const [micronutrients, setMicronutrients] = useState({
         saturatedFat: 20,
         polyunsaturatedFat: 10,
@@ -45,9 +82,13 @@ const Goals = () => {
     const handleMacroChange = (e) => {
         setMacros({
             ...macros,
-            [e.target.name]: e.target.value,
+            [e.target.name]: Number(e.target.value),
         });
     };
+
+    if (loading) return <p>Loading...</p>;
+    if (!macros) return <p>No profile found. Please create one.</p>;
+
   return (
     <>
         <MacroPanel
@@ -55,6 +96,7 @@ const Goals = () => {
             handleMacroChange={handleMacroChange}
             edittingMacros={edittingMacros}
             setEdittingMacros={setEdittingMacros}
+            UpdateGoals={UpdateGoals}
         />
 
         <div className="micronutrients">

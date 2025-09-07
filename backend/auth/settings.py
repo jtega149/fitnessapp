@@ -63,6 +63,7 @@ AUTH_USER_MODEL = 'users.CustomUser'
 
 AUTHENTICATION_BACKENDS = [
     'users.auth_backend.EmailAuthBackend',  # Custom email authentication backend
+    'django.contrib.auth.backends.ModelBackend',  # Default authentication backend
 ]
 
 ROOT_URLCONF = 'auth.urls'

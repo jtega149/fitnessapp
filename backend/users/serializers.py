@@ -31,3 +31,8 @@ class SignupSerializer(serializers.ModelSerializer):
         user = User.objects.create_user(**validated_data) #Creates a user with the validated data
         print("User created:", user)  # Debugging line to check created user
         return user
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserProfile
+        fields = '__all__'  # or explicitly list fields

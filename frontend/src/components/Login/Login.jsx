@@ -24,6 +24,7 @@ const Login = () => {
     AxiosInstance.post('/login/', formData)
       .then((response) => {
         console.log('Login successful:', response.data);
+        localStorage.setItem('token', response.data.token); // Store the token in localStorage
         navigate('/'); // Redirect to home page after login
         // Handle successful login (e.g., redirect or show a success message)
       })
